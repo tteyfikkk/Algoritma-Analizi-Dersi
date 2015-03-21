@@ -1,0 +1,52 @@
+import java.util.Arrays;
+import java.util.Random;
+
+
+public class Bubble {
+
+
+	static int  swap=0;
+	static int com=0;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		    Bubble app=new Bubble();
+		    int[] input = app.generateRandomNumbers(10);
+		    System.out.println(Arrays.toString(input));
+			
+		    //After sort
+		    System.out.println(Arrays.toString(app.bubbleSort(input)));
+		    System.out.println(swap);
+		    System.out.println(com);
+
+	}
+	  public static int[] bubbleSort(int[] arr) {
+	        int tmp = 0;
+	        for (int i=arr.length-1; i>0; i--) {
+	        	com=com+1;
+	            for (int j=0; j<i; j++) {
+	                if (arr[j] > arr[j+1]) {
+	                    // Swap
+	                	swap=swap+1;
+	                    tmp = arr[j];
+	                    arr[j] = arr[j+1];
+	                    arr[j+1] = tmp;
+	                }
+	            }
+	        }
+
+	        return arr;
+	    }
+	  private int[] generateRandomNumbers(int n){
+			
+		    int[] result = new int[n];
+		    Random random = new Random();
+			
+		    for (int i = 0; i < result.length; i++) {
+			    result[i] = random.nextInt(n * 10);
+		    }
+		
+		    return result;
+		}
+
+}
