@@ -1,0 +1,56 @@
+import java.util.Arrays;
+import java.util.Random;
+
+
+public class Selection {
+
+	/**
+	 * @param args
+	 */
+	static int  swap=0;
+	static int com=0;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Selection app=new Selection();
+		   int[] input = app.generateRandomNumbers(50);
+		    System.out.println(Arrays.toString(input));
+			
+		    //After sort
+		    System.out.println(Arrays.toString(Selection.selectionSort(input)));
+		    System.out.println(swap);
+		    System.out.println(com);
+	}
+	
+	public static int[] selectionSort(int[] array){
+		for(int i=0; i<array.length-1; i++){
+			int minIndex = i;
+			com=com+1;
+			for(int j=i+1; j<array.length; j++){
+				if(array[j] < array[minIndex])
+					minIndex = j;
+				swap=swap+1;
+			}
+			swap(array, i, minIndex);
+		}
+		return array;
+	}
+ 
+	public static void swap(int[] array, int index1, int index2){
+		int tmp = array[index1];
+		array[index1] = array[index2];
+		array[index2] = tmp;
+	}
+	  private int[] generateRandomNumbers(int n){
+			
+		    int[] result = new int[n];
+		    Random random = new Random();
+			
+		    for (int i = 0; i < result.length; i++) {
+			    result[i] = random.nextInt(n * 10);
+		    }
+		
+		    return result;
+		}
+
+
+}
