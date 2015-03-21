@@ -1,0 +1,75 @@
+import java.util.Arrays;
+import java.util.Random;
+
+
+public class Shell {
+
+	/**
+	 * @param args
+	 */
+	static int  swap=0;
+	static int com=0;
+	
+	public static void main(String[] args) {
+		Shell app=new Shell();
+		   int[] input = app.generateRandomNumbers(500);
+		    System.out.println(Arrays.toString(input));
+			
+		    //After sort
+		    System.out.println(Arrays.toString(app.sort(input)));
+		    System.out.println(swap);
+		    System.out.println(com);
+		
+
+	}
+	
+	public int[] sort(int[] a)
+	{
+	
+		int N = a.length;
+		
+		int h = 1;
+		while (h < N/3) h = 3 * h + 1; // 1, 4, 13, 40, 121, 364
+		
+		while (h >= 1)
+		{
+			// h-sort the array
+			for (int i = h; i < N; i++)
+			{
+				com=com+1;
+				for (int j = i; j >= h && less(a[j], a[j-h]); j -= h)
+				{
+					this.swap(a, j, j-h);
+				}
+			}
+			
+			h = h / 3;
+		}
+		return a;
+	}
+	
+	private boolean less(int v, int w)
+	{
+		return v < w;
+	}
+	
+	private void swap(int[] a, int i, int j)
+	{
+		int aux = a[i];
+		a[i] = a[j];
+		a[j] = aux;
+		swap=swap+1;
+	}
+	private int[] generateRandomNumbers(int n){
+		
+	    int[] result = new int[n];
+	    Random random = new Random();
+		
+	    for (int i = 0; i < result.length; i++) {
+		    result[i] = random.nextInt(n * 10);
+	    }
+	
+	    return result;
+	}
+
+}
